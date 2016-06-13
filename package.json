@@ -1,0 +1,16 @@
+{
+  "name": "ng-pagination-demo",
+  "version": "1.0.0",
+  "description": "Demo for ng-pagination directive",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/accetone/ng-pagination-demo.git"
+  },
+  "author": "Nikita Tsyhanenko",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "^1.5.6",
+    "express": "^4.13.4"
+  }
+}
