@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular pagination demo</title>
+    <style>
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .pagination {
+            margin-top: 16px;
+        }
+
+        .pagination .page {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            text-align: center;
+
+            cursor: pointer;
+        }
+
+        .pagination .page:hover {
+            color: #ff0000;
+        }
+
+        .pagination .page.disabled {
+            color: #c5c5c5;
+        }
+
+        .pagination .page.active {
+            color: #d60000;
+        }
+    </style>
+</head>
+<body>
+
+    <div ng-app="testModule" ng-controller="testController">
+        <div class="title">Page #{{ test.page }}</div>
+        <div class="element" ng-repeat="element in test.list">{{ element }}</div>
+
+        <pagination count="test.data.length" take="test.take" activate="test.activate"
+            max-size="test.maxSize" hide-arrows="false"></pagination>
+    </div>
+
+    <script src="js/angular.min.js"></script>
+    <script src="js/directive.pagination.js"></script>
+
+    <script>
+        angular.module('testModule', ['ng-pagination']).controller('testController', ['$scope', testController]);
+
+        function testController($scope) {
+            var data = [];
+
+            for (var i = 0; i < 100; i++) data.push('Element #' + (i + 1));
+
+            $scope.test = {
+                page: 1,
+                take: 5,
+                maxSize: 11,
+                list: [],
+                data: data,
+                activate: activate
+            };
+
+            function activate(page, take) {
+                $scope.test.page = page;
+
+                var list = [];
+
+                for (var i = (page - 1) * take; i < page * take; i++) {
+                    list.push($scope.test.data[i]);
+                }
+
+                $scope.test.list = list;
+            }
+        }
+    </script>
+</body>
+</html>
