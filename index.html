@@ -74,7 +74,10 @@
                 var list = [];
 
                 for (var i = (page - 1) * take; i < page * take; i++) {
-                    list.push($scope.test.data[i]);
+                    //add a simple condition, in case in the list, there is undefined value
+                    if(i<data.length){
+                       list.push($scope.test.data[i]);
+                    }
                 }
 
                 $scope.test.list = list;
